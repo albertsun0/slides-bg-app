@@ -1,0 +1,161 @@
+export type colorType = {
+  name: string;
+  colors: string[];
+};
+export const colorSchemes: colorType[] = [
+  {
+    name: 'Sea Blue',
+    colors: ['#1976D2', '#607D8B', '#BBDEFB', '#2196F3', '#536DFE', '#BDBDBD'],
+  },
+  { name: 'Dark', colors: ['#FE9400', '#283339', '#19272F', '#32434A'] },
+  {
+    name: 'Mint',
+    colors: [
+      '#9cfdd2',
+      '#c4fce9',
+      '#dce9de',
+      '#1463f5',
+      '#6ab0fc',
+      '#6c73fc',
+      '#7094c9',
+    ],
+  },
+  {
+    name: 'Mint Chip',
+    colors: ['#9cfda1', '#9cfdd2', '#283339', '#19272F', '#32434A'],
+  },
+  {
+    name: 'Rainbow',
+    colors: [
+      '#B3E5FC',
+      '#0288D1',
+      '#0097A7',
+      '#D4E157',
+      '#43A047',
+      '#81C784',
+      '#FFEE58',
+      '#FF8F00',
+      '#E65100',
+    ],
+  },
+  {
+    name: 'Forest Green',
+    colors: ['#D4E157', '#43A047', '#537234', '#81C784', '#FFEE58'],
+  },
+  {
+    name: 'Appalachian Fall',
+    colors: ['#fb4d18', '#bd2210', '#e38839', '#eda02b', '#753218', '#cf9f42'],
+  },
+  {
+    name: 'Pastel Sunset',
+    colors: [
+      '#e88146',
+      '#fdc886',
+      '#cca3ab',
+      '#e9ac8f',
+      '#5f6595',
+      '#8d90bd',
+      '#b09fc1',
+      '#fdba00',
+      '#e55542',
+    ],
+  },
+  {
+    name: 'Pacific Fog',
+    colors: [
+      '#767d85',
+      '#b4bab6',
+      '#838a90',
+      '#445660',
+      '#7185a6',
+      '#717d8d',
+      '#576872',
+    ],
+  },
+  {
+    name: 'Land Before Time',
+    colors: [
+      '#809342',
+      '#415019',
+      '#446c25',
+      '#385b59',
+      '#656462',
+      '#1c4922',
+      '#8392a5',
+    ],
+  },
+  {
+    name: 'Desert Stone',
+    colors: [
+      '#786c65',
+      '#d0b49d',
+      '#a78e58',
+      '#4e4118',
+      '#382812',
+      '#aa9788',
+      '#836b3a',
+      '#b9b66d',
+      '#8e883c',
+      '#584f4b',
+      '#21190b',
+      '#b8aaa4',
+    ],
+  },
+  {
+    name: 'Purple Night',
+    colors: ['#30308c', '#040405', '#1a1b66', '#10114f', '#090a38', '#5c5c99'],
+  },
+  {
+    name: 'Desert Noon',
+    colors: [
+      '#F58D47',
+      '#FDAC40',
+      '#DD8002',
+      '#CF7803',
+      '#F4AC4A',
+      '#FFFF00',
+      '#FDA42B',
+    ],
+  },
+  {
+    name: 'Desert Sunset',
+    colors: [
+      '#CF0E43',
+      '#BD0D3E',
+      '#A40B35',
+      '#8E092E',
+      '#760726',
+      '#970606',
+      '#630D84',
+    ],
+  },
+  {
+    name: 'Misty Morning',
+    colors: [
+      '#F2D8BC',
+      '#FDF6D8',
+      '#D1BEA2',
+      '#B8A797',
+      '#BEB5AB',
+      '#8D877B',
+      '#9A9087',
+      '#BBB7AB',
+      '#C1C5C5',
+      '#989994',
+    ],
+  },
+  {
+    name: 'Summer Day',
+    colors: [
+      '#97CFFF',
+      '#658DC6',
+      '#76A8D8',
+      '#D8EC7E',
+      '#95B453',
+      '#C5D762',
+      '#D9E4EE',
+      '#E0E3E6',
+      '#8BBFFE',
+    ],
+  },
+];
