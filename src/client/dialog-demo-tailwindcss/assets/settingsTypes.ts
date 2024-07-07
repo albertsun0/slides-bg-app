@@ -22,7 +22,7 @@ export const defaultSettings = {
   HexagonNoise: 0,
   WavesWaviness: 0,
   WavesSlope: 10,
-  WavesDistance: 0,
+  WavesDistance: 20,
   WavesCustomColor: false,
   WavesColor1: '#ffffff',
   WavesColor2: '#ffffff',

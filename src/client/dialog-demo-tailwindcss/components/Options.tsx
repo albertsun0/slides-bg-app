@@ -36,6 +36,26 @@ function Options({
     } as settingsType;
     const grayOverlay = clamp(parseFloat(newOptions['GrayOverlay']), 0, 1);
     newOptions['GrayOverlay'] = grayOverlay;
+    const Rows = clamp(parseFloat(newOptions['Rows']), 0, 15);
+    newOptions['Rows'] = Rows;
+    const HexagonSize = clamp(parseFloat(newOptions['HexagonSize']), 10, 200);
+    newOptions['HexagonSize'] = HexagonSize;
+    const HexagonNoise = clamp(parseFloat(newOptions['HexagonNoise']), 0, 30);
+    newOptions['HexagonNoise'] = HexagonNoise;
+    const WavesWaviness = clamp(
+      parseFloat(newOptions['WavesWaviness']),
+      -100,
+      100
+    );
+    newOptions['WavesWaviness'] = WavesWaviness;
+    const WavesSlope = clamp(parseFloat(newOptions['WavesSlope']), -100, 100);
+    newOptions['WavesSlope'] = WavesSlope;
+    const WavesDistance = clamp(
+      parseFloat(newOptions['WavesDistance']),
+      -100,
+      100
+    );
+    newOptions['WavesDistance'] = WavesDistance;
     setOptions(newOptions as settingsType);
     setLocalOptions(newOptions as settingsType);
     console.log(newOptions);
@@ -94,7 +114,7 @@ function Options({
           }`}
           onClick={() => {
             setSelectedType('waves');
-            setHeight(530);
+            setHeight(565);
           }}
         >
           <input type="radio" checked={selectedType === 'waves'}></input>
