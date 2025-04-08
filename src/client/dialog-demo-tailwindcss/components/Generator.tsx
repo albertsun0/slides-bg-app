@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import ColorPicker from './ColorPicker';
 // This is a wrapper for google.script.run that lets us use promises.
 import { serverFunctions } from '../../utils/serverFunctions';

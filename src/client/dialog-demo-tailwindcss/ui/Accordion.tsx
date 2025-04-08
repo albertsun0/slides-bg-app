@@ -25,7 +25,7 @@ function Accordion({
   return (
     <div>
       <div
-        className={`p-4 w-full bg-gray-100 flex flex-row space-x-2 border-b cursor-pointer ${
+        className={`px-4 py-3 w-full bg-gray-100 flex flex-row space-x-2 border-b cursor-pointer text-sm ${
           color && lightTextOnColor(color) ? 'text-white' : 'text-black'
         }`}
         onClick={() => setExapnded(!expanded)}
@@ -47,9 +47,9 @@ function Accordion({
         style={
           expanded
             ? {
-                height: contentHeight,
+                maxHeight: '1000px',
               }
-            : { height: '0px' }
+            : { maxHeight: '0px' }
         }
       >
         {Children}

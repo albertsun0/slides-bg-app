@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { settingsType, genTypes } from '../assets/settingsTypes';
 import { colorSchemes } from '../assets/colors';
 import Button from '../ui/Button';
 import { colchange, shuffle, hexToRgb, bzCurve } from '../assets/utils';
+import { PerlinNoise } from '../assets/perlinNoise';
 
 type CanvasProps = {
   options: settingsType;
@@ -20,6 +21,7 @@ function Canvas({
   addImageSlide,
 }: CanvasProps) {
   const [currentImage, setCurrentImage] = useState<string>('');
+  const [blurSeed, setBlurSeed] = useState(0);
   const getColorScheme = (i: number) => {
     if (i === -1) {
       return Math.floor(Math.random() * colorSchemes.length);
@@ -210,11 +212,74 @@ function Canvas({
     setCurrentImage(imgfull);
   };
 
+  const genblur = () => {
+    var c = document.getElementById('canvas') as HTMLCanvasElement;
+    var ctx = c.getContext('2d') as CanvasRenderingContext2D;
+    const scale = options.BlurResolutionScaling;
+    const w = 640 * scale;
+    const h = 360 * scale;
+    c.width = w;
+    c.height = h;
+    // ctx.translate(0.5, 0.5);
+    ctx.clearRect(0, 0, c.width, c.height);
+
+    let primaryColor = colorSchemes[getColorScheme(colorIndex)].colors[0];
+    if (options.BlurCustomColor) primaryColor = options.BlurPrimaryColor;
+    const segments = options.BlurSegments;
+    const scaling = options.BlurScaling;
+
+    const rgb = hexToRgb(primaryColor)!;
+    const brightness = 1;
+
+    const preserveSeed = options.BlurPreserveSeed;
+    let seed = Math.random() * 26;
+    if (preserveSeed) {
+      seed = blurSeed;
+    } else {
+      setBlurSeed(seed);
+    }
+
+    const maxIndex = rgb.indexOf(Math.max(...rgb));
+
+    for (let i = 0; i < w; i++) {
+      for (let j = 0; j < h; j++) {
+        ctx.beginPath(); // Start a new path
+        ctx.rect(i, j, 1, 1); // Add a rectangle to the current path
+        const x = i / w + seed;
+        const y = j / h + seed; // normalize
+        const size = scaling; // pick a scaling value
+        const n = PerlinNoise(size * x, size * y, 0.8);
+        // set rgb to gradient
+        let newRbg = [
+          n * rgb[0] * brightness,
+          n * rgb[1] * brightness,
+          n * rgb[2] * brightness,
+        ];
+
+        // add stagger effect
+        newRbg[maxIndex] =
+          (Math.floor(n * segments) / segments) * 255 * brightness;
+
+        ctx.fillStyle = `rgb(${newRbg[0]},${newRbg[1]},${newRbg[2]})`;
+
+        ctx.fill(); // Render the path
+      }
+    }
+    ctx.restore();
+    ctx.fillStyle = 'rgba(255,255,255,' + options.GrayOverlay + ')';
+    ctx.fillRect(0, 0, c.width, c.height);
+
+    const imgfull = c.toDataURL('image/png');
+    setCurrentImage(imgfull);
+  };
+
   const gen = () => {
     if (currentType == 'waves') {
       genwaves();
     } else if (currentType == 'hexagon') {
       genhex();
+    } else if (currentType == 'blur') {
+      genblur();
     } else {
       genOrig();
     }
@@ -225,7 +290,7 @@ function Canvas({
   }, [currentImage]);
 
   return (
-    <div className="px-1 space-y-2 py-2">
+    <div className="space-y-2 py-2 px-1">
       <div className="flex flex-row gap-2">
         <canvas id="canvas" className="overflow-hidden hidden"></canvas>
         <Button onClick={gen} text="Generate" />
@@ -238,9 +303,12 @@ function Canvas({
           text="Insert as Image"
         />
       </div>
-      <div className="font-semibold">Preview</div>
+
       {currentImage && (
-        <img src={currentImage} className="w-full md:w-1/2"></img>
+        <div>
+          <div className="font-semibold text-sm">Preview</div>
+          <img src={currentImage} className="w-full md:w-1/2"></img>
+        </div>
       )}
     </div>
   );

@@ -6,7 +6,7 @@ type ButtonProps = {
 function Button({ text, onClick }: ButtonProps) {
   return (
     <button
-      className="bg-blue-100 rounded-md p-1 px-2 hover:bg-blue-300"
+      className="rounded-md border text-sm p-1 px-2 hover:bg-blue-100 transition-all duration-200"
       onClick={onClick}
     >
       {text}

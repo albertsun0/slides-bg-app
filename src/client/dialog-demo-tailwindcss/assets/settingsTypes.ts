@@ -13,6 +13,12 @@ export type settingsType = {
   WavesCustomColor: boolean;
   WavesColor1: string;
   WavesColor2: string;
+  BlurCustomColor: boolean;
+  BlurSegments: number;
+  BlurScaling: number;
+  BlurPreserveSeed: boolean;
+  BlurResolutionScaling: number;
+  BlurPrimaryColor: string;
 };
 
 export const defaultSettings = {
@@ -20,12 +26,18 @@ export const defaultSettings = {
   Rows: 6,
   HexagonSize: 100,
   HexagonNoise: 0,
-  WavesWaviness: 0,
+  WavesWaviness: 20,
   WavesSlope: 10,
   WavesDistance: 20,
   WavesCustomColor: false,
   WavesColor1: '#ffffff',
   WavesColor2: '#ffffff',
+  BlurSegments: 6,
+  BlurScaling: 2.5,
+  BlurPreserveSeed: false,
+  BlurResolutionScaling: 1,
+  BlurCustomColor: false,
+  BlurPrimaryColor: '#ffffff',
 };
 
-export type genTypes = 'original' | 'hexagon' | 'waves';
+export type genTypes = 'original' | 'hexagon' | 'waves' | 'blur';
